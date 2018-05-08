@@ -1,3 +1,7 @@
+<?php 
+	session_start();
+	
+ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,37 +19,39 @@
 			    <form class="form-inline col-md-8">
 			      <input class="form-control col-md-10 mr-sm-2" type="search" placeholder="Procurar" aria-label="Search">
 			    </form>
-			  
-			   <div class="col-md-2" ><a style="color: #fff;" href="" data-toggle="modal" data-target="#exampleModal" >Login</a>
-			   	<span style="color: white;">ou</span>
+			    <?php if (isset($_SESSION['nome'])){
+			    	echo "Olá, ". $_SESSION["nome"];
+			    }else{
+			    	echo'
+				   <div class="col-md-2" ><a style="color: #fff;" href="" data-toggle="modal" data-target="#exampleModal">Login</a>
+			   		<span style="color: white;"> ou </span>
 			   						<a style="color: #fff;" href="cadastro.php" >Cadastre-se</a>
-			   </div>
+			  	 </div>';
+			}
+			?>
 			         <!-- Modal -->
 				      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 				        <div class="modal-dialog" role="document">
 				          <div class="modal-content">
 				            <div class="modal-header">
-				              <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+				              <h5 class="modal-title" id="exampleModalLabel">Faça seu Login</h5>
 				              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 				                <span aria-hidden="true">&times;</span>
 				              </button>
 				            </div>
 				            <div class="modal-body">
-				              <form>
+				              <form  action="login.php" method="post">
 				                <div class="form-group">
-				                  <label for="exampleInputEmail1">Email address</label>
-				                  <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-				                  <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+				                  <label for="login">Login </label>
+				                  <input type="text" class="form-control" id="login" name="login" aria-describedby="emailHelp" placeholder="Insira seu login">
+				                  <small id="login" name="login" class="form-text text-muted">Nunca iremos compartilhar seus dados.</small>
 				                </div>
 				                <div class="form-group">
-				                  <label for="exampleInputPassword1">Password</label>
-				                  <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+				                  <label for="senha">Senha</label>
+				                  <input type="password" class="form-control" id="senha" name="senha" placeholder="Senha">
 				                </div>
-				                <div class="form-check">
-				                  <input type="checkbox" class="form-check-input" id="exampleCheck1">
-				                  <label class="form-check-label" for="exampleCheck1">Check me out</label>
-				                </div>
-				                <button type="submit" class="btn btn-primary">Submit</button>
+				             
+				                <button type="submit" class="btn btn-primary">Confirmar</button>
 				              </form>
 				            </div>
 				            
@@ -84,7 +90,7 @@
 			      <img class="d-block w-100" src="imagem/america1.png" alt="First slide">
 			    </div>
 			    <div class="carousel-item">
-			      <img class="d-block w-100" src="imagem/america2.png" alt="Second slide">
+			      <img class="d-block w-100" src="imagem/tele.jpg" alt="Second slide">
 			    </div>
 			    <div class="carousel-item">
 			      <img class="d-block w-100" src="imagem/america3.jpg" alt="Third slide">
@@ -101,39 +107,50 @@
 			  </div>
 
 			</div>
+			<?php 
+				include 'conect.php';
+				$stmt = $pdo->prepare('SELECT * FROM produtos ORDER BY id DESC LIMIT 3');
+				$stmt->execute();
+				if($alvos = $stmt->fetchAll()){
 
+			 ?>
 			<div class="row my-5 offset-md-2 ">
 
 				<div class="card col-md-3 mx-3" ">
-				  <img class="card-img-top" src="imagem/america3.jpg" alt="Card image cap">
+				  <img class="card-img-top" src="imagem/<?php echo $alvos[0]['prod_img']; ?>" width = "50%" alt="Card image cap">
 				  <div class="card-body">
-				    <h5 class="card-title">Card title</h5>
-				    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-				    <a href="#" class="btn btn-primary">R$ 1999,99</a>
+				    <h5 class="card-title"><?php echo $alvos[0]['nome']; ?></h5>
+				    <p class="card-text"><?php echo $alvos[0]['descricao'] ?></p>
+				    <p class="card-text"><?php echo "R$ ".$alvos[0]['preco'] ?></p>
+				    <a href="#" class="btn btn-primary">COMPRAR</a>
 
 				  </div>
 				</div>
 				  <div class="card col-md-3 mx-3">
-					  <img class="card-img-top" src="imagem/america1.png" alt="Card image cap">
+					  <img class="card-img-top" src="imagem/<?php echo $alvos[1]['prod_img']; ?>" alt="Card image cap">
 					  <div class="card-body">
-					    <h5 class="card-title">Card title</h5>
-					    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-					    <a href="#" class="btn btn-primary">R$ 2999,90</a>
+					    <h5 class="card-title"><?php echo $alvos[1]['nome']; ?></h5>
+					    <p class="card-text"><?php echo $alvos[1]['descricao'] ?></p>
+					    <p class="card-text"><?php echo "R$ ". $alvos[1]['preco'] ?></p>
+					    <a href="#" class="btn btn-primary">COMPRAR</a>
 					  </div>
 					</div>
 					<div class="card col-md-3 mx-3" style="">
-					  <img class="card-img-top" src="imagem/america2.png" alt="Card image cap">
+					  <img class="card-img-top" src="imagem/<?php echo $alvos[2]['prod_img']; ?>" alt="Card image cap">
 					  <div class="card-body">
-					    <h5 class="card-title">Card title</h5>
-					    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-					    <a href="#" class="btn btn-primary">R$ 89,99</a>
+					    <h5 class="card-title"><?php echo $alvos[2]['nome']; ?></h5>
+					    <p class="card-text"><?php echo $alvos[2]['descricao'] ?></p>
+					    <p class="card-text"><?php echo "R$ ". $alvos[2]['preco'] ?></p>
+					    <a href="#" class="btn btn-primary">COMPRAR</a>
 					  </div>
 					</div>
 				
 
 
 			</div>
-			
+			<?php 
+				} 
+			 ?>
 			<footer class="border text-left row" style="background-color: #048;" >
 				<div class="col-md-2"></div>
 				<div class="list-group list-group-flush col-md-2 py-3 " style="background-color: #048; color: #fff;">

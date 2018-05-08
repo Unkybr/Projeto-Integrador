@@ -6,3 +6,11 @@
 	margin: 0% 3%;
 
 }
+
+
+.card-img-top {
+    width: 70%;
+    margin: 0 auto;
+    border-top-left-radius: calc(.25rem - 1px);
+    border-top-right-radius: calc(.25rem - 1px);
+}
