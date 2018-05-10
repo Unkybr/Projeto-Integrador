@@ -15,12 +15,17 @@
 			    <form class="form-inline col-md-8">
 			      <input class="form-control col-md-10 mr-sm-2" type="search" placeholder="Procurar" aria-label="Search">
 			    </form>
-			  
-			   <div class="col-md-2" ><a style="color: #fff;" href="" data-toggle="modal" data-target="#exampleModal" >Login</a>
-			   	<span style="color: white;"> ou </span>
+			   <?php if (isset($_SESSION['nome'])){
+			    	echo "Olá, ". $_SESSION["nome"]. '<a href="logout.php">Logout</a>';
+			    }else{
+			    	echo'
+				   <div class="col-md-2" ><a style="color: #fff;" href="" data-toggle="modal" data-target="#exampleModal">Login</a>
+			   		<span style="color: white;"> ou </span>
 			   						<a style="color: #fff;" href="cadastro.php" >Cadastre-se</a>
-			   </div>
-			         <!-- Modal -->
+			  	 </div>';
+			}
+			?>
+			          <!-- Modal -->
 				      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 				        <div class="modal-dialog" role="document">
 				          <div class="modal-content">
@@ -31,15 +36,15 @@
 				              </button>
 				            </div>
 				            <div class="modal-body">
-				              <form>
+				              <form  action="login.php" method="post">
 				                <div class="form-group">
-				                  <label for="exampleInputEmail1">Email </label>
-				                  <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Insira seu email">
-				                  <small id="emailHelp" class="form-text text-muted">Nunca iremos compartilhar seus dados.</small>
+				                  <label for="login">Login </label>
+				                  <input type="text" class="form-control" id="login" name="login" aria-describedby="emailHelp" placeholder="Insira seu login">
+				                  <small id="login" name="login" class="form-text text-muted">Nunca iremos compartilhar seus dados.</small>
 				                </div>
 				                <div class="form-group">
-				                  <label for="exampleInputPassword1">Senha</label>
-				                  <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Senha">
+				                  <label for="senha">Senha</label>
+				                  <input type="password" class="form-control" id="senha" name="senha" placeholder="Senha">
 				                </div>
 				             
 				                <button type="submit" class="btn btn-primary">Confirmar</button>
@@ -70,16 +75,16 @@
 			</nav>
 
 			<div style="padding: 30px">	
-				<form>
+				<form action="registro.php" method="post"> 
 					<div class="row">
 						<div class="col-md-2"></div>
 						<div class="form-group col-md-4">
 					      <label for="inputNome4">Nome</label>
-					      <input type="text" class="form-control" id="inputNome4" placeholder="Nome">
+					      <input type="text" id="nome" pattern="[A-Za-z]{100} name="nome" class="form-control" id="inputNome4" placeholder="Nome" required>
 					    </div> 
 					    <div class="form-group col-md-4">
-					      <label for="inputSobrenome4">Sobrenome</label>
-					      <input type="text" class="form-control" id="inputSobrenome4" placeholder="Sobrenome">
+					      <label for="inputLogin4">Login</label>
+					      <input type="text" id="login" name="login"  class="form-control" id="inputLogin4" placeholder="Login" required>
 					    </div>
 					</div>
 
@@ -87,17 +92,17 @@
 				  <div class="col-md-2"></div>
 				   <div class="form-group col-md-4">
 				    <label for="inputAddress">Endereço</label>
-				    <input type="text" class="form-control" id="inputAddress" placeholder="Rua, Nº - Bairro">
+				    <input type="text" id="endereco" name="endereco" class="form-control" id="inputAddress" placeholder="Rua, Nº - Bairro" required>
 				  </div>
 
 				   <div class="form-group col-md-1">
 				    <label for="inputUF">UF</label>
-				    <input type="text" class="form-control" id="inputUF" placeholder="UF">
+				    <input type="text" id="uf" name="uf" class="form-control" id="inputUF" pattern="[A-Za-z]{2}" placeholder="UF" required>
 				  </div>
 				  
 				  <div class="form-group col-md-3">
 				    <label for="inputCPF2">CPF</label>
-				    <input type="text" class="form-control" id="inputCPF" placeholder="CPF">
+				    <input type="text" id="cpf" name="cpf" class="form-control" id="inputCPF" placeholder="CPF" required>
 				  </div>
 				</div>
 
@@ -105,11 +110,11 @@
 				  	<div class="col-md-2"></div>
 				    <div class="form-group col-md-4">
 				      <label for="inputEmail4">Email</label>
-				      <input type="email" class="form-control" id="inputEmail4" placeholder="Email">
+				      <input type="email" id="email" name="email" class="form-control" id="inputEmail4" placeholder="Email" required>
 				    </div>
 				    <div class="form-group col-md-4">
-				      <label for="inputPassword4">Password</label>
-				      <input type="password" class="form-control" id="inputPassword4" placeholder="Password">
+				      <label for="inputPassword4">Senha</label>
+				      <input type="password" id="senha" name="senha" class="form-control" id="inputPassword4" placeholder="Senha" required>
 				    </div>
 				  </div>
 
@@ -118,9 +123,10 @@
 				<div style="margin-left: 18%;">
 				  <button type="submit" class="btn btn-primary">Cadastrar</button>
 				  </div>
-				</form>
+				
 				
 			</div>
+				</form>
 		
 			
 			<footer class="border text-left row" style="background-color: #048;" >

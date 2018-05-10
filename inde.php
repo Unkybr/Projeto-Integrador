@@ -8,19 +8,23 @@
 	<meta charset="utf-8" />
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
 	<link rel="stylesheet" type="text/css" href="estilo.css" />
+	<script></script>
 	<title>Página Inicial</title>
 </head>
 
-<body">
+<body>
+
+
 	<div class="container-fluid">
 		
 			<nav class="navbar navbar-expand-lg navbar-light row" style="background-color: #048;">
 			  <a class="navbar-brand offset-md-1 col-md-1" href="inde.php"><img src="imagem/logo.png" width="100%"></a>
-			    <form class="form-inline col-md-8">
-			      <input class="form-control col-md-10 mr-sm-2" type="search" placeholder="Procurar" aria-label="Search">
+			    <form class="form-inline col-md-8" method="POST" action="busca.php">
+			      <input class="form-control col-md-10 mr-sm-2" type="text" id="busca" name="busca" placeholder="Procurar" aria-label="Search">
+			      
 			    </form>
 			    <?php if (isset($_SESSION['nome'])){
-			    	echo "Olá, ". $_SESSION["nome"];
+			    	echo "<span style='color: #fff;'> Olá, ". $_SESSION["nome"] .'</span>  <a style="color: #fff;" href="logout.php"></br> Logout</a>';
 			    }else{
 			    	echo'
 				   <div class="col-md-2" ><a style="color: #fff;" href="" data-toggle="modal" data-target="#exampleModal">Login</a>
