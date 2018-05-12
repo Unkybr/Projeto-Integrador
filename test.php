@@ -86,96 +86,124 @@
 			    </div>
 			  </div>
 			</nav>
-			<div class="row offset-md-4 my-4">
-			<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-			  <ol class="carousel-indicators">
-			    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-			    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-			    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-			  </ol>
-			  
-			  <div class="carousel-inner">
-			    <div class="carousel-item active">
-			      <img class="d-block w-100" src="imagem/america1.png" alt="First slide">
-			    </div>
-			    <div class="carousel-item">
-			      <img class="d-block w-100" src="imagem/tele.jpg" alt="Second slide">
-			    </div>
-			    <div class="carousel-item">
-			      <img class="d-block w-100" src="imagem/america3.jpg" alt="Third slide">
-			    </div>
-			  </div>
-			  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-			    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-			    <span class="sr-only">Previous</span>
-			  </a>
-			  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-			    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-			    <span class="sr-only">Next</span>
-			  </a>
-			  </div>
-
-			</div>
-			<?php 
-				include 'conect.php';
-				$stmt = $pdo->prepare('SELECT * FROM produtos ORDER BY id DESC LIMIT 3');
-				$stmt->execute();
-				if($alvos = $stmt->fetchAll()){
-
-			 ?>
-			<div class="row my-5 offset-md-2 ">
-
-				<div class="card col-md-3 mx-3" ">
-				  <img class="card-img-top" src="imagem/<?php echo $alvos[0]['prod_img']; ?>" width = "50%" alt="Card image cap">
-				  <div class="card-body">
-				    <h5 class="card-title"><?php echo $alvos[0]['nome']; ?></h5>
-				    <p class="card-text"><?php echo $alvos[0]['descricao'] ?></p>
-				    <p class="card-text"><?php echo "R$ ".$alvos[0]['preco'] ?></p>
-				    <form action="carrinho.php" method="post">
-						<button type='submit' class="btn btn-primary">COMPRAR</button>
-						<input type="hidden" name="nome-produto" value="<?php echo $alvos[0]['nome']; ?>">
-						<input type="hidden" name="descricao-produto" value="<?php echo $alvos[0]['descricao']; ?>">
-						<input type="hidden" name="preco-produto" value="<?php echo $alvos[0]['preco']; ?>">
-					</form>
-
-				  </div>
-				</div>
-				  <div class="card col-md-3 mx-3">
-					  <img class="card-img-top" src="imagem/<?php echo $alvos[1]['prod_img']; ?>" alt="Card image cap">
-					  <div class="card-body">
-					    <h5 class="card-title"><?php echo $alvos[1]['nome']; ?></h5>
-					    <p class="card-text"><?php echo $alvos[1]['descricao'] ?></p>
-					    <p class="card-text"><?php echo "R$ ". $alvos[1]['preco'] ?></p>
-					    <form action="carrinho.php" method="post">
-					    	<button type="submit" class="btn btn-primary">COMPRAR</button>
-					 		<input type="hidden" name="nome-produto" value="<?php echo $alvos[1]['nome']; ?>">
-							<input type="hidden" name="descricao-produto" value="<?php echo $alvos[1]['descricao']; ?>">
-							<input type="hidden" name="preco-produto" value="<?php echo $alvos[1]['preco']; ?>">
-					    </form>
-
-					  </div>
-					</div>
-					<div class="card col-md-3 mx-3" style="">
-					  <img class="card-img-top" src="imagem/<?php echo $alvos[2]['prod_img']; ?>" alt="Card image cap">
-					  <div class="card-body">
-					    <h5 class="card-title"><?php echo $alvos[2]['nome']; ?></h5>
-					    <p class="card-text"><?php echo $alvos[2]['descricao'] ?></p>
-					    <p class="card-text"><?php echo "R$ ". $alvos[2]['preco'] ?></p>
-					   	<form action="carrinho.php" method="post">
-					    	<button type="submit" class="btn btn-primary">COMPRAR</button>
-					    	<input type="hidden" name="nome-produto" value="<?php echo $alvos[2]['nome']; ?>">
-							<input type="hidden" name="descricao-produto" value="<?php echo $alvos[2]['descricao']; ?>">
-							<input type="hidden" name="preco-produto" value="<?php echo $alvos[2]['preco']; ?>">
-					    </form>
-					  </div>
-					</div>
-				
+			
 
 
-			</div>
-			<?php 
-				} 
-			 ?>
+			<
+			<table class="table table-shopping">
+                        <thead>
+                            <tr>
+                                <th class="text-center"></th>
+                                <th >Produto</th>
+                                <th class="th-deion">Descricao</th>
+                                <th class="text-right">Preco</th>
+                                <th class="text-right">Quantidade</th>
+                                <th class="text-right">Valor</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <div class="img-container">
+                                        <img src="assets/img/shopping.jpg" alt="...">
+                                    </div>
+                                </td>
+                                <td class="td-name">
+                                    'Moleskine Agenda'
+                                </td>
+                                <td>
+                                    <b>Meeting Notes</b>
+                                    <p>
+                                    Most beautiful agenda for the office, really nice paper and black cover. Most beautiful agenda for the office.</p>
+                                </td>
+
+                                <td class="td-number">
+                                    <small>R$</small>49
+                                </td>
+                                <td class="td-number">
+                                    <small>x</small>25
+                                </td>
+                                <td class="td-number">
+                                    <small>R$</small>1,225
+                                </td>
+                                <td class="td-actions">
+                                           <button type="button" rel="tooltip" data-placement="left" title="Remover item" class="btn btn-danger btn-simple btn-icon ">
+                                        <i class="fa fa-times"></i>
+                                    </button>                                    
+                                </td>
+                            </tr>
+
+                                <tr>
+                                     <td class="td-actions">
+                                         <div class="info info-horizontal">
+                                                <div class="icon icon-blue icon-sm">
+                                                    <i class="fa fa-shopping-cart"></i>
+
+                                                </div>
+                                        </div>
+                                    </td>
+
+                         <td>
+
+
+                            <div class="deion">
+
+                                <h4> Digite seu CEP: </h4>                                   
+
+                                            <a href="">Buscar Cep</a>
+
+                            </div>
+                        </td>
+
+                        <td>
+                        <div class="form-group has-success">
+        <input type="text" value="" class="form-control" placeholder="00000-000"/>
+
+    </div>
+    </td>
+
+    <td class="td-number">
+                                  <button class="btn btn-primary btn-fill">Consultar</button>
+                                </td>
+                                <td class="td-number">
+                                    <p>Valor do Envio Sedex</p>
+                                </td>
+
+                            <td class="td-number">
+                                    <small>R$</small>5,99
+                                </td>    
+       </div>
+
+     </div>
+            </td>
+            </tr>
+
+                            <tr>
+                                <td colspan="2"></td>
+                                <td></td>
+                                <td class="td-total">
+                                   Total
+                                </td>
+                                <td class="td-price">
+                                    <small>R$</small>12,999
+                                </td>
+                                <td> <button type="submit" class="btn btn-info btn-fill btn-l" ahref="login.php">Finalize seu Pedido <i class="fa fa-chevron-right"></i>
+                             </button></td>
+
+                                <td></td>
+                            </tr>
+
+
+
+                        </tbody>
+                    </table>
+
+
+
+
+			
+		
 			<footer class="border text-left row" style="background-color: #048;" >
 				<div class="col-md-2"></div>
 				<div class="list-group list-group-flush col-md-2 py-3 " style="background-color: #048; color: #fff;">
