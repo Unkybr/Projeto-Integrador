@@ -76,128 +76,107 @@
 			  <div class="col-md-2"></div>
 			  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
 			    <div class="navbar-nav col-md-8 text-center">
-			      <a class="nav-item nav-link exp-link" href="#">Telefonia</a>
-			      <a class="nav-item nav-link exp-link" href="#">Informática</a>
-			      <a class="nav-item nav-link exp-link" href="#">Eletrônicos</a>
-			      <a class="nav-item nav-link exp-link" href="#">Eletrodomésticos</a>
-			      <a class="nav-item nav-link exp-link" href="#">Eletroportáteis</a>
-			      <a class="nav-item nav-link exp-link" href="#">Decoração</a>
-			      <a class="nav-item nav-link exp-link" href="#">Entretenimento</a>
+			      <a class="nav-item nav-link exp-link" href="categoria.php?categoria=Telefonia">Telefonia</a>
+			      <a class="nav-item nav-link exp-link" href="categoria.php?categoria=Informática">Informática</a>
+			      <a class="nav-item nav-link exp-link" href="categoria.php?categoria=eletronicos">Eletrônicos</a>
+			      <a class="nav-item nav-link exp-link" href="categoria.php?categoria=eletrodomesticos">Eletrodomésticos</a>
+			      <a class="nav-item nav-link exp-link" href="categoria.php?categoria=eletroportateis">Eletroportáteis</a>
+			      <a class="nav-item nav-link exp-link" href="categoria.php?categoria=decoracao">Decoração</a>
+			      <a class="nav-item nav-link exp-link" href="categoria.php?categoria=Entretenimento">Entretenimento</a>
+			      <a href="saircarrinho.php?acao=esvaziar" class="btn btn btn-info btn-sm"><i class="fas fa-times-circle"></i></a>
 			    </div>
 			  </div>
 			</nav>
 			
-
-
-			<
-			<table class="table table-shopping">
+			<div class="row"> 
+				<div class="col-md-3"></div>
+			<table class="table col-md-6">
+                        
                         <thead>
                             <tr>
-                                <th class="text-center"></th>
-                                <th >Produto</th>
-                                <th class="th-deion">Descricao</th>
-                                <th class="text-right">Preco</th>
-                                <th class="text-right">Quantidade</th>
-                                <th class="text-right">Valor</th>
-                                <th></th>
+                                <th class="text-left"> img</th>
+                                <th>Produto</th>
+                                <th class="text-left">Descrição</th>
+                                <th class="text-left">Preço</th>
+                             <!-- <th class="text-left">Quantidade</th>
+                                <th class="text-left">Valor</th>
+                                <th></th> -->
                             </tr>
                         </thead>
+                        
                         <tbody>
+
+
+                        <?php
+                        $total = 0;
+                      foreach ($_SESSION['carrinho'] as $item) {
+                      	
+                        ?>
+
+                        
                             <tr>
                                 <td>
                                     <div class="img-container">
-                                        <img src="assets/img/shopping.jpg" alt="...">
+                                        <img src="" alt="...">
                                     </div>
                                 </td>
                                 <td class="td-name">
-                                    'Moleskine Agenda'
+                                    <?php echo $item[0]; ?>                                
                                 </td>
-                                <td>
-                                    <b>Meeting Notes</b>
-                                    <p>
-                                    Most beautiful agenda for the office, really nice paper and black cover. Most beautiful agenda for the office.</p>
+                                <td>                                  
+                                   <p> <?php echo $item[1]; ?>  </p>
                                 </td>
 
                                 <td class="td-number">
-                                    <small>R$</small>49
+                                    <?php echo $item[2]; ?> 
                                 </td>
-                                <td class="td-number">
+                                <!-- <td class="td-number">
                                     <small>x</small>25
                                 </td>
                                 <td class="td-number">
                                     <small>R$</small>1,225
-                                </td>
-                                <td class="td-actions">
-                                           <button type="button" rel="tooltip" data-placement="left" title="Remover item" class="btn btn-danger btn-simple btn-icon ">
+                                </td> -->
+                              <!--  <td class="td-actions">
+                                    <button type="button" rel="tooltip" data-placement="left" title="Remover item" class="btn btn-danger btn-simple btn-icon ">
                                         <i class="fa fa-times"></i>
                                     </button>                                    
-                                </td>
+                                </td> -->
+
                             </tr>
+                        	
+                            <?php
+                            $total += ($item[2]) ;
+                       		}
+                            ?>
 
-                                <tr>
-                                     <td class="td-actions">
-                                         <div class="info info-horizontal">
-                                                <div class="icon icon-blue icon-sm">
-                                                    <i class="fa fa-shopping-cart"></i>
-
-                                                </div>
-                                        </div>
-                                    </td>
-
-                         <td>
-
-
-                            <div class="deion">
-
-                                <h4> Digite seu CEP: </h4>                                   
-
-                                            <a href="">Buscar Cep</a>
-
-                            </div>
-                        </td>
-
-                        <td>
-                        <div class="form-group has-success">
-        <input type="text" value="" class="form-control" placeholder="00000-000"/>
-
-    </div>
-    </td>
-
-    <td class="td-number">
-                                  <button class="btn btn-primary btn-fill">Consultar</button>
-                                </td>
-                                <td class="td-number">
-                                    <p>Valor do Envio Sedex</p>
-                                </td>
-
-                            <td class="td-number">
-                                    <small>R$</small>5,99
-                                </td>    
-       </div>
-
-     </div>
-            </td>
-            </tr>
 
                             <tr>
-                                <td colspan="2"></td>
+                                
+                               
+                                <td> 
+                                	<button type="submit" class="btn btn-info btn-fill btn-l" ahref="login.php">Finalize seu Pedido <i class="fa fa-chevron-right"></i>
+                             		</button>
+                             	</td>
+                                <td>
+                                   <b>Total</b>
+                                  
+                                </td>
+                                <td>
+                                    <?php
+                                     
+                                    echo $total;
+                                    ?>
+                                </td>
                                 <td></td>
-                                <td class="td-total">
-                                   Total
-                                </td>
-                                <td class="td-price">
-                                    <small>R$</small>12,999
-                                </td>
-                                <td> <button type="submit" class="btn btn-info btn-fill btn-l" ahref="login.php">Finalize seu Pedido <i class="fa fa-chevron-right"></i>
-                             </button></td>
 
-                                <td></td>
+                               
                             </tr>
 
 
 
                         </tbody>
-                    </table>
+            </table>
+            </div>
 
 
 

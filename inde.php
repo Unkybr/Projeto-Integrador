@@ -24,7 +24,7 @@
 			      <input class="form-control col-md-10 mr-sm-2" type="text" id="busca" name="busca" placeholder="Procurar" aria-label="Search">
 			      
 			    </form>
-			    <a href="" <i class="fas fa-shopping-cart" style="font-size: 150%; padding: 0px 25px; color: white;"></i></a>
+			    <a href="test.php" <i class="fas fa-shopping-cart" style="font-size: 150%; padding: 0px 25px; color: white;"></i></a>
 			    <?php if (isset($_SESSION['nome'])){
 			    	echo "<span style='color: #fff; padding: 0px 5px;'> Olá, ". $_SESSION["nome"] .'</span>  <a style="color: #fff;" href="logout.php"></br> Logout</a>';
 
@@ -76,13 +76,13 @@
 			  <div class="col-md-2"></div>
 			  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
 			    <div class="navbar-nav col-md-8 text-center">
-			      <a class="nav-item nav-link exp-link" href="#">Telefonia</a>
-			      <a class="nav-item nav-link exp-link" href="#">Informática</a>
-			      <a class="nav-item nav-link exp-link" href="#">Eletrônicos</a>
-			      <a class="nav-item nav-link exp-link" href="#">Eletrodomésticos</a>
-			      <a class="nav-item nav-link exp-link" href="#">Eletroportáteis</a>
-			      <a class="nav-item nav-link exp-link" href="#">Decoração</a>
-			      <a class="nav-item nav-link exp-link" href="#">Entretenimento</a>
+			      <a class="nav-item nav-link exp-link" href="categoria.php?categoria=Telefonia">Telefonia</a>
+			      <a class="nav-item nav-link exp-link" href="categoria.php?categoria=Informática">Informática</a>
+			      <a class="nav-item nav-link exp-link" href="categoria.php?categoria=eletronicos">Eletrônicos</a>
+			      <a class="nav-item nav-link exp-link" href="categoria.php?categoria=eletrodomesticos">Eletrodomésticos</a>
+			      <a class="nav-item nav-link exp-link" href="categoria.php?categoria=eletroportateis">Eletroportáteis</a>
+			      <a class="nav-item nav-link exp-link" href="categoria.php?categoria=decoracao">Decoração</a>
+			      <a class="nav-item nav-link exp-link" href="categoria.php?categoria=Entretenimento">Entretenimento</a>
 			    </div>
 			  </div>
 			</nav>

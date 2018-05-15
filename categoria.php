@@ -1,4 +1,7 @@
-<?php 
+
+
+<?php			 
+
 	session_start();
 	
  ?>
@@ -7,15 +10,16 @@
 <head>
 	<meta charset="utf-8" />
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
 	<link rel="stylesheet" type="text/css" href="estilo.css" />
 	<script></script>
 	<title>Página Inicial</title>
 </head>
 
 <body>
-
-
 	<div class="container-fluid">
+
+
 		
 			<nav class="navbar navbar-expand-lg navbar-light row" style="background-color: #048;">
 			  <a class="navbar-brand offset-md-1 col-md-1" href="inde.php"><img src="imagem/logo.png" width="100%"></a>
@@ -23,16 +27,20 @@
 			      <input class="form-control col-md-10 mr-sm-2" type="text" id="busca" name="busca" placeholder="Procurar" aria-label="Search">
 			      
 			    </form>
+			    <a href="test.php" <i class="fas fa-shopping-cart" style="font-size: 150%; padding: 0px 25px; color: white;"></i></a>
 			    <?php if (isset($_SESSION['nome'])){
-			    	echo "<span style='color: #fff;'> Olá, ". $_SESSION["nome"] .'</span>  <a style="color: #fff;" href="logout.php"></br> Logout</a>';
+			    	echo "<span style='color: #fff; padding: 0px 5px;'> Olá, ". $_SESSION["nome"] .'</span>  <a style="color: #fff;" href="logout.php"></br> Logout</a>';
+
 			    }else{
 			    	echo'
-				   <div class="col-md-2" ><a style="color: #fff;" href="" data-toggle="modal" data-target="#exampleModal">Login</a>
+				   <div class="col-md-1" ><a style="color: #fff;" href="" data-toggle="modal" data-target="#exampleModal">Login</a>
 			   		<span style="color: white;"> ou </span>
 			   						<a style="color: #fff;" href="cadastro.php" >Cadastre-se</a>
 			  	 </div>';
 			}
+
 			?>
+
 			         <!-- Modal -->
 				      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 				        <div class="modal-dialog" role="document">
@@ -71,8 +79,8 @@
 			  <div class="col-md-2"></div>
 			  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
 			    <div class="navbar-nav col-md-8 text-center">
-			       <a class="nav-item nav-link exp-link" href="categoria.php?categoria=Telefonia">Telefonia</a>
-			      <a class="nav-item nav-link exp-link" href="categoria.php?categoria=Informática">Informática</a>
+			      <a class="nav-item nav-link exp-link" href="categoria.php?categoria=Telefonia">Telefonia</a>
+			      <a class="nav-item nav-link exp-link" href="categoria.php?categoria=informatica">Informática</a>
 			      <a class="nav-item nav-link exp-link" href="categoria.php?categoria=eletronicos">Eletrônicos</a>
 			      <a class="nav-item nav-link exp-link" href="categoria.php?categoria=eletrodomesticos">Eletrodomésticos</a>
 			      <a class="nav-item nav-link exp-link" href="categoria.php?categoria=eletroportateis">Eletroportáteis</a>
@@ -81,23 +89,17 @@
 			    </div>
 			  </div>
 			</nav>
+		
+			</div>
 			<div class="row my-5 justify-content-center ">
-			
-			<?php 
-				include 'conect.php';
-				$stmt = $pdo->prepare('SELECT * FROM produtos ORDER BY id DESC LIMIT 3');
-				$stmt->execute();
-				if($alvos = $stmt->fetchAll()){
-
-			 ?>
 			 <?php
 				include 'conect.php';
 
 
-				$busca = $_POST['busca'];
+				$categoria = $_GET['categoria'];
 
-				$stmt = $pdo->prepare('SELECT * FROM produtos WHERE nome LIKE ? ');
-				$stmt->bindValue(1,'%'.$busca.'%');
+				$stmt = $pdo->prepare('SELECT * FROM produtos WHERE tipo= ? ');
+				$stmt->bindValue(1,$categoria, PDO::PARAM_STR);
 				$stmt->execute();
 				$alvos = $stmt->fetchAll(); 
 				foreach ($alvos as $item) {
@@ -105,24 +107,31 @@
 				
 			?>	
 
+
 				<div class="card col-md-3 mx-3" style="margin-top: 15px">
 				  <img class="card-img-top" src="imagem/<?php echo $item['prod_img']; ?>" width = "50%" alt="Card image cap">
 				  <div class="card-body">
 				    <h5 class="card-title"><?php echo $item['nome']; ?></h5>
 				    <p class="card-text"><?php echo $item['descricao'] ?></p>
 				    <p class="card-text"><?php echo "R$ ".$item['preco'] ?></p>
-				    <a href="carrinho.php" class="btn btn-primary">COMPRAR</a>
+				    <form action="carrinho.php" method="post">
+						<button type='submit' class="btn btn-primary">COMPRAR</button>
+						<input type="hidden" name="nome-produto" value="<?php echo $alvos[0]['nome']; ?>">
+						<input type="hidden" name="descricao-produto" value="<?php echo $alvos[0]['descricao']; ?>">
+						<input type="hidden" name="preco-produto" value="<?php echo $alvos[0]['preco']; ?>">
+					</form>
 
 				  </div>
 				</div>
-				  
-
-			<?php 
+				<?php 
 					}
-				} 
+				 
 			 ?>
 			</div>
-			<footer class="border text-left row" style="background-color: #048;" >
+				   
+
+			
+			<footer class="border  text-left row" style="background-color: #048;" style="min-height: 100px;" >
 				<div class="col-md-2"></div>
 				<div class="list-group list-group-flush col-md-2 py-3 " style="background-color: #048; color: #fff;">
 
@@ -143,3 +152,7 @@
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
 </body>
 </html>
+
+
+
+ ?>

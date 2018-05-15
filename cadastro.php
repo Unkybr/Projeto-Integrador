@@ -63,13 +63,13 @@
 			  <div class="col-md-2"></div>
 			  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
 			    <div class="navbar-nav col-md-8 text-center">
-			      <a class="nav-item nav-link exp-link" href="#">Telefonia</a>
-			      <a class="nav-item nav-link exp-link" href="#">Informática</a>
-			      <a class="nav-item nav-link exp-link" href="#">Eletrônicos</a>
-			      <a class="nav-item nav-link exp-link" href="#">Eletrodomésticos</a>
-			      <a class="nav-item nav-link exp-link" href="#">Eletroportáteis</a>
-			      <a class="nav-item nav-link exp-link" href="#">Decoração</a>
-			      <a class="nav-item nav-link exp-link" href="#">Entretenimento</a>
+			       <a class="nav-item nav-link exp-link" href="categoria.php?categoria=Telefonia">Telefonia</a>
+			      <a class="nav-item nav-link exp-link" href="categoria.php?categoria=Informática">Informática</a>
+			      <a class="nav-item nav-link exp-link" href="categoria.php?categoria=eletronicos">Eletrônicos</a>
+			      <a class="nav-item nav-link exp-link" href="categoria.php?categoria=eletrodomesticos">Eletrodomésticos</a>
+			      <a class="nav-item nav-link exp-link" href="categoria.php?categoria=eletroportateis">Eletroportáteis</a>
+			      <a class="nav-item nav-link exp-link" href="categoria.php?categoria=decoracao">Decoração</a>
+			      <a class="nav-item nav-link exp-link" href="categoria.php?categoria=Entretenimento">Entretenimento</a>
 			    </div>
 			  </div>
 			</nav>
@@ -80,7 +80,7 @@
 						<div class="col-md-2"></div>
 						<div class="form-group col-md-4">
 					      <label for="inputNome4">Nome</label>
-					      <input type="text" id="nome" pattern="[A-Za-z]{100} name="nome" class="form-control" id="inputNome4" placeholder="Nome" required>
+					      <input type="text" id="nome"  name="nome" class="form-control" id="inputNome4" placeholder="Nome" required>
 					    </div> 
 					    <div class="form-group col-md-4">
 					      <label for="inputLogin4">Login</label>
