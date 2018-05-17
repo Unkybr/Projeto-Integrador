@@ -3,6 +3,7 @@
 	include "conect.php";
 $id = '';	
 $nome = $_POST['nome'];
+$tipo = $_POST['tipo'];
 $email = $_POST['email'];
 $senha = $_POST['senha'];
 $login = $_POST['login'];
@@ -21,7 +22,7 @@ if($alvos = $stmt->fetchAll()){
 */
 
 
-$stmt = $pdo->prepare ('INSERT INTO cadastro (id,cpf,tipo, nome,login,email,senha,endereco,UF) VALUES (?,?,?,?,?,?,?,?,?)');
+$stmt = $pdo->prepare ('INSERT INTO cadastro (id,cpf,tipo,nome,login,email,senha,endereco,UF) VALUES (?,?,?,?,?,?,?,?,?)');
 
 $stmt->bindParam(1,$id,PDO::PARAM_INT);
 $stmt->bindParam(2,$cpf,PDO::PARAM_INT);
@@ -32,6 +33,7 @@ $stmt->bindParam(6,$email,PDO::PARAM_STR);
 $stmt->bindParam(7,$senha,PDO::PARAM_STR);
 $stmt->bindParam(8,$endereco,PDO::PARAM_STR);
 $stmt->bindParam(9,$uf,PDO::PARAM_STR);
+
 
 if ($stmt->execute()) {
 

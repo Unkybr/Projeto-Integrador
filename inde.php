@@ -136,6 +136,8 @@
 						<input type="hidden" name="nome-produto" value="<?php echo $alvos[0]['nome']; ?>">
 						<input type="hidden" name="descricao-produto" value="<?php echo $alvos[0]['descricao']; ?>">
 						<input type="hidden" name="preco-produto" value="<?php echo $alvos[0]['preco']; ?>">
+						<input type="hidden" name="imagem-produto" value="<?php echo $alvos[0]['prod_img']; ?>">
+
 					</form>
 
 				  </div>
@@ -151,6 +153,8 @@
 					 		<input type="hidden" name="nome-produto" value="<?php echo $alvos[1]['nome']; ?>">
 							<input type="hidden" name="descricao-produto" value="<?php echo $alvos[1]['descricao']; ?>">
 							<input type="hidden" name="preco-produto" value="<?php echo $alvos[1]['preco']; ?>">
+							<input type="hidden" name="imagem-produto" value="<?php echo $alvos[1]['prod_img']; ?>">
+
 					    </form>
 
 					  </div>
@@ -166,6 +170,7 @@
 					    	<input type="hidden" name="nome-produto" value="<?php echo $alvos[2]['nome']; ?>">
 							<input type="hidden" name="descricao-produto" value="<?php echo $alvos[2]['descricao']; ?>">
 							<input type="hidden" name="preco-produto" value="<?php echo $alvos[2]['preco']; ?>">
+							<input type="hidden" name="imagem-produto" value="<?php echo $alvos[2]['prod_img']; ?>">
 					    </form>
 					  </div>
 					</div>

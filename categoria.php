@@ -119,6 +119,7 @@
 						<input type="hidden" name="nome-produto" value="<?php echo $alvos[0]['nome']; ?>">
 						<input type="hidden" name="descricao-produto" value="<?php echo $alvos[0]['descricao']; ?>">
 						<input type="hidden" name="preco-produto" value="<?php echo $alvos[0]['preco']; ?>">
+						<input type="hidden" name="imagem-produto" value="<?php echo $alvos[0]['prod_img']; ?>">
 					</form>
 
 				  </div>

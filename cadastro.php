@@ -117,7 +117,7 @@
 				      <input type="password" id="senha" name="senha" class="form-control" id="inputPassword4" placeholder="Senha" required>
 				    </div>
 				  </div>
-
+				  <input type="hidden" name="tipo" value="cliente">
 			
 				  </div>
 				<div style="margin-left: 18%;">

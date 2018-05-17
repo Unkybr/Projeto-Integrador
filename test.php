@@ -1,5 +1,6 @@
-<?php 
+<?php
 	session_start();
+	include 'conect.php'; 
 	
  ?>
 <!DOCTYPE html>
@@ -83,100 +84,96 @@
 			      <a class="nav-item nav-link exp-link" href="categoria.php?categoria=eletroportateis">Eletroportáteis</a>
 			      <a class="nav-item nav-link exp-link" href="categoria.php?categoria=decoracao">Decoração</a>
 			      <a class="nav-item nav-link exp-link" href="categoria.php?categoria=Entretenimento">Entretenimento</a>
-			      <a href="saircarrinho.php?acao=esvaziar" class="btn btn btn-info btn-sm"><i class="fas fa-times-circle"></i></a>
 			    </div>
 			  </div>
 			</nav>
 			
-			<div class="row"> 
-				<div class="col-md-3"></div>
-			<table class="table col-md-6">
-                        
-                        <thead>
-                            <tr>
-                                <th class="text-left"> img</th>
-                                <th>Produto</th>
-                                <th class="text-left">Descrição</th>
-                                <th class="text-left">Preço</th>
-                             <!-- <th class="text-left">Quantidade</th>
-                                <th class="text-left">Valor</th>
-                                <th></th> -->
-                            </tr>
-                        </thead>
-                        
-                        <tbody>
+			<div class="table-responsive col-12">
+<table cellpadding="8" cellspacing="1" class=" table" style="table-layout: fixed; width: 100%">
+<thead>
+<tr>
+<th class="text-center"><strong>Foto</strong></th>
+<th class="text-center"><strong>Nome</strong></th>
+<th class="text-center"><strong>Descrição</strong></th>
+<th class="text-center"><strong>Preço</strong></th>
+</tr>	
+</thead>
+<tbody>
+<?php
+	$item_total=0;		
+	
+    foreach ($_SESSION["carrinho"] as $item){
+		?>
+				
+				<tr>
+					<td class="text-center align-middle"> <figure class="figure"><img width="50%" class="img3" src="<?php echo "imagem/".$item[3];?>"></figure></td>
+					<td class="text-center align-middle"><?php echo $item[0]; ?></td>
+					<td class="text-center align-middle"><?php echo $item[1]; ?></td>
+					<td class="text-center align-middle"><?php echo "R$ ". $item[2]; ?></td>
+				</tr>
+				<?php
+        $item_total += ($item[2]);
+        $item_juros = ($item_total*1.12);
+		}
+		?>
 
+<tr>
+<td colspan="1" align=right><strong></td>
+<td colspan="1" align=right><strong></td>
+<td colspan="1" align=right><strong></td>
+<td class="text-center" colspan="1" align=right><strong>Total:</strong> <?php echo "R$ ".number_format((float)$item_total, 2, '.', ''); ?></td>
+</tr>
+<tr>
+<td colspan="1" align=right><strong></td>
+<td colspan="1" align=right><strong></td>
+<td colspan="1" align=right><strong></td>
+<td class="text-center" colspan="1" align=right><form class="align-middle" method="get" action="#">
+				<div class="row justify-content-center">
+				<div class="col-8">
+				<select class="custom-select" id="inputGroupSelect01">
+				  <option value="a" selected disabled>Selecione o parcelmento:</option>
+				  <option value="1">1x de <?php echo $item_total; ?> (à vista)</option>
+				  <option value="2">2x de <?php echo number_format((float)$item_total/2, 2, '.', '');?> (sem juros)</option>
+				  <option value="3">3x de <?php echo number_format((float)$item_total/3, 2, '.', '');?> (sem juros)</option>
+				  <option value="4">4x de <?php echo number_format((float)$item_total/4, 2, '.', '');?> (sem juros)</option>
+				  <option value="5">5x de <?php echo number_format((float)$item_total/5, 2, '.', '');?> (sem juros)</option>
+				  <option value="6">6x de <?php echo number_format((float)$item_total/6, 2, '.', '');?> (sem juros)</option>
+				  <option value="7">7x de <?php echo number_format((float)$item_total/7, 2, '.', '');?> (sem juros)</option>
+				  <option value="8">8x de <?php echo number_format((float)$item_total/8, 2, '.', '');?> (sem juros)</option>
+				  <option value="9">9x de <?php echo number_format((float)$item_total/9, 2, '.', '');?> (sem juros)</option>
+				  <option value="10">10x de <?php echo number_format((float)$item_total/10, 2, '.', '');?> (sem juros)</option>
+				  <option value="11">11x de <?php echo number_format((float)$item_juros/11, 2, '.', '');?> (12% de juros)</option>
+				  <option value="12">12x de <?php echo number_format((float)$item_juros/12, 2, '.', '');?> (12% de juros)</option>
+				</select>
+  					</div>
+  					</div>
+            </form></td>
+</tr>
 
-                        <?php
-                        $total = 0;
-                      foreach ($_SESSION['carrinho'] as $item) {
-                      	
-                        ?>
+<tr>
+<td colspan="1" align=right><strong></td>
+<td colspan="1" align=right><strong></td>
+<td colspan="1" align=right><strong></td>
+<td class="text-center" colspan="1" align=right><form class="align-middle" method="get" action="#">
+            <a href="saircarrinho.php?acao=esvaziar" class="btn btn-danger">Esvaziar Carrinho</a>
+            <?php
+            if (isset($_SESSION['nome'])) {
 
-                        
-                            <tr>
-                                <td>
-                                    <div class="img-container">
-                                        <img src="" alt="...">
-                                    </div>
-                                </td>
-                                <td class="td-name">
-                                    <?php echo $item[0]; ?>                                
-                                </td>
-                                <td>                                  
-                                   <p> <?php echo $item[1]; ?>  </p>
-                                </td>
+            echo '<a href="finalizarcompra.php" class="btn btn-primary text-light" name="id" id="id">Finalizar Compra</a>';
+        	}
+        	else{
+        		echo '<a href="finalizarcompra.php" class="btn btn-primary text-light disabled">Finalizar Compra</a>';
+        		}
+        		?>
+            </form></td>
 
-                                <td class="td-number">
-                                    <?php echo $item[2]; ?> 
-                                </td>
-                                <!-- <td class="td-number">
-                                    <small>x</small>25
-                                </td>
-                                <td class="td-number">
-                                    <small>R$</small>1,225
-                                </td> -->
-                              <!--  <td class="td-actions">
-                                    <button type="button" rel="tooltip" data-placement="left" title="Remover item" class="btn btn-danger btn-simple btn-icon ">
-                                        <i class="fa fa-times"></i>
-                                    </button>                                    
-                                </td> -->
+            
+</tr>
 
-                            </tr>
-                        	
-                            <?php
-                            $total += ($item[2]) ;
-                       		}
-                            ?>
+</tbody>
+</table>
+</div>		
 
-
-                            <tr>
-                                
-                               
-                                <td> 
-                                	<button type="submit" class="btn btn-info btn-fill btn-l" ahref="login.php">Finalize seu Pedido <i class="fa fa-chevron-right"></i>
-                             		</button>
-                             	</td>
-                                <td>
-                                   <b>Total</b>
-                                  
-                                </td>
-                                <td>
-                                    <?php
-                                     
-                                    echo $total;
-                                    ?>
-                                </td>
-                                <td></td>
-
-                               
-                            </tr>
-
-
-
-                        </tbody>
-            </table>
-            </div>
 
 
 
